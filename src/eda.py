@@ -1,14 +1,12 @@
 """
 Exploratory Data Analysis (EDA) per il dataset Fashion-MNIST.
 Questo modulo contiene funzioni per caricare, analizzare e visualizzare
-il dataset Fashion-MNIST utilizzando PyTorch e torchvision.
+il dataset Fashion-MNIST utilizzando torchvision.
 """
 
 import os
 import pandas as pd
 import matplotlib.pyplot as plt
-import seaborn as sns
-import torch
 import torchvision
 import torchvision.transforms as transforms
 import numpy as np
@@ -140,7 +138,7 @@ def visualize_data(train_dataset, train_df, pixel_stats):
     
     # 2. Esempi per classe
     plt.figure(figsize=(15, 8))
-    fig, axes = plt.subplots(2, 5, figsize=(15, 8))
+    _, axes = plt.subplots(2, 5, figsize=(15, 8))
     axes = axes.ravel()
     
     class_examples = {}
@@ -185,7 +183,7 @@ def visualize_data(train_dataset, train_df, pixel_stats):
         if all(len(samples) >= 6 for samples in class_samples.values()):
             break
     
-    fig, axes = plt.subplots(len(selected_classes), 6, figsize=(12, 8))
+    _, axes = plt.subplots(len(selected_classes), 6, figsize=(12, 8))
     
     for row, class_idx in enumerate(selected_classes):
         for col in range(6):
@@ -210,12 +208,16 @@ def run_eda():
     visualize_data(train_dataset, train_df, pixel_stats)
     
     print("\n===== RIEPILOGO FINALE =====")
-    print(f"✅ Dataset Fashion-MNIST analizzato")
+    print("✅ Dataset Fashion-MNIST analizzato")
     print(f"✅ {len(train_dataset):,} immagini di training, {len(test_dataset):,} di test")
-    print(f"✅ Tutti i grafici salvati in data/")
+    print("✅ Tutti i grafici salvati in data/")
     
     print("\nAnalisi esplorativa completata.")
     return train_dataset, test_dataset
 
+def main():
+    """Entry point per EDA."""
+    return run_eda()
+
 if __name__ == "__main__":
-    run_eda()
+    main()

@@ -4,12 +4,24 @@ install:
 	@echo "Installation complete. You can now run the project."
 
 lint:
-	pylint --disable=R,C src/*.py tests/*.py
-	@echo "Linting complete."
+	python -m pylint --disable=R,C,W0401,W0614 src/*.py tests/*.py
+	@echo "Linting complete (import warnings disabled)."
 
 test:
-	python -m pytest -vv --cov=src tests/
+	python -m pytest tests/ -v --cov=src --cov-report=term-missing
 	@echo "Testing complete."
+
+test-verbose:
+	python -m pytest tests/ -v -s --cov=src --cov-report=term-missing
+	@echo "Verbose testing complete."
+
+test-train:
+	python -m pytest tests/test_train.py -v --cov=src.train --cov-report=term-missing
+	@echo "Train testing complete."
+
+test-eda:
+	python -m pytest tests/test_eda.py -v --cov=src.eda --cov-report=term-missing
+	@echo "EDA testing complete."
 
 build:
 	python -m build
@@ -34,11 +46,6 @@ predict:
 # Workflow completo
 workflow: install run-eda train test
 	@echo "Workflow completo: installazione, EDA, training e test eseguiti."
-
-# Test rapido
-quick-test:
-	python -m pytest tests/test_train.py::TestTraining::test_get_model -v
-	@echo "Quick test completato."
 
 # Training veloce per debug
 quick-train:

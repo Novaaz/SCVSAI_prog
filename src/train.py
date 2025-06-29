@@ -18,10 +18,10 @@ import numpy as np
 from PIL import Image
 
 def cretate_model_dir():
-	"""Crea la directory models/ se non esiste."""
-	if not os.path.exists("models"):
-		os.makedirs("models")
-		print("Directory 'models/' creata.")
+    """Crea la directory models/ se non esiste."""
+    if not os.path.exists("models"):
+        os.makedirs("models")
+        print("Directory 'models/' creata.")
 
 def get_data_loaders(batch_size=64, subset_size=30000):
     """Carica e preprocessa Fashion-MNIST"""
@@ -171,7 +171,7 @@ def train_model(epochs=10):
     # Test finale
     print("\nTesting...")
     model.load_state_dict(torch.load('models/best_model.pth'))
-    test_loss, test_acc = validate(model, test_loader, criterion, device)
+    _, test_acc = validate(model, test_loader, criterion, device)
     print(f"Test Accuracy: {test_acc:.2f}%")
     
     # Grafici
@@ -259,7 +259,6 @@ def compute_metrics_pytorch(y_true, y_pred):
     
     # Media pesata (weighted average)
     class_counts = [np.sum(y_true == i) for i in range(num_classes)]
-    total_samples = len(y_true)
     
     weighted_precision = np.average(precision_per_class, weights=class_counts)
     weighted_recall = np.average(recall_per_class, weights=class_counts)
@@ -338,7 +337,13 @@ def evaluate_model(model, test_loader):
     
     return test_results
 
-if __name__ == "__main__":
+def main():
+    """Entry point per il training."""
     print("🚀 Starting Fashion-MNIST training...")
+    cretate_model_dir()
     model = train_model(epochs=10)
     print("✅ Training completed!")
+    return model
+
+if __name__ == "__main__":
+    main()

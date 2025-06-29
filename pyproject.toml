@@ -1,22 +1,49 @@
 [build-system]
-requires = ["setuptools>=45", "wheel"]
+requires = ["setuptools>=61.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "cvs-ai-project"
+name = "scvsai"
 version = "0.1.0"
-description = "Progetto CVS AI - Image Classification"
-authors = [{name = "Leonardo Novazzi", email = "leonardo.novazzi@studenti.univr.it"}]
+description = "pkg per il progetto universitario del corso di Sviluppo e ciclo di vita di sofware di artificial intelligence che si basa su ResNet18 e sfrutta il dataset Fashion-MNIST per classificare capi di vestiario"
+authors = [
+    {name = "Novaaz", email = "leonardonovazzi@gmail.com"}
+]
+license = {text = "MIT"}
+readme = "README.md"
+homepage = "https://github.com/Novaaz/SCVSAI_prog"
+repository = "https://github.com/Novaaz/SCVSAI_prog"
+keywords = ["machine-learning", "computer-vision", "fashion-mnist", "pytorch"]
+requires-python = ">=3.8"
 dependencies = [
-    "torch>=1.9.0",
-    "torchvision>=0.10.0",
+    "torch>=2.0.0",
+    "torchvision>=0.15.0",
     "numpy>=1.21.0",
-    "matplotlib>=3.4.0",
-    "scikit-learn>=1.0.0"
+    "matplotlib>=3.5.0",
+    "scikit-learn>=1.0.0",
+    "Pillow>=8.0.0",
+    "tqdm>=4.60.0",
+    "pandas>=1.3.0",
+    "seaborn>=0.11.0",
 ]
 
 [project.optional-dependencies]
-dev = ["pytest>=6.0.0", "flake8>=4.0.0", "black>=21.0.0"]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-cov>=4.0.0",
+    "pylint>=2.15.0",
+    "black>=22.0.0",
+]
+
+[project.scripts]
+scvsai-train = "src.train:main"
+scvsai-eda = "src.eda:main"
 
 [tool.setuptools.packages.find]
-where = ["src"]
+where = ["."]
+include = ["src*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+addopts = "-v --cov=src"
