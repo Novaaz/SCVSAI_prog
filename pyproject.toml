@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=45", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cvs-ai-project"
+version = "0.1.0"
+description = "Progetto CVS AI - Image Classification"
+authors = [{name = "Leonardo Novazzi", email = "leonardo.novazzi@studenti.univr.it"}]
+dependencies = [
+    "torch>=1.9.0",
+    "torchvision>=0.10.0",
+    "numpy>=1.21.0",
+    "matplotlib>=3.4.0",
+    "scikit-learn>=1.0.0"
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=6.0.0", "flake8>=4.0.0", "black>=21.0.0"]
+
+[tool.setuptools.packages.find]
+where = ["src"]

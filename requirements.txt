@@ -1,0 +1,16 @@
+torch
+torchvision
+numpy
+matplotlib
+scikit-learn
+pytest
+pytest-cov
+pylint
+build
+black
+jupyter
+pillow
+transformers
+seaborn
+tqdm
+poetry
