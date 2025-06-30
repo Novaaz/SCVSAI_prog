@@ -248,14 +248,6 @@ make test-eda      # Solo modulo EDA
 
 ## 🔧 Sviluppo
 
-### Setup ambiente di sviluppo
-
-```bash
-# Linting e formatting
-make lint
-make format
-```
-
 ### Struttura codice
 
 ```python
