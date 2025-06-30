@@ -262,7 +262,7 @@ class TestTraining:
         
         print("✓ Device selection testato")
         
-	# commentati per evitare esecuzione di training reale -> da mettere in file a parte
+	# commentati per evitare esecuzione di training reale
     
 	# @patch('matplotlib.pyplot.show')
     # @patch('builtins.print')
@@ -290,7 +290,6 @@ class TestTraining:
     
 	# def test_main_execution(self):
     #     """Test del blocco if __name__ == '__main__'"""
-    #     # Mock train_model per evitare training reale
     #     with patch('train.train_model') as mock_train_model:
     #         mock_train_model.return_value = get_model()
             
